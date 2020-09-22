@@ -14,6 +14,14 @@ jobs:
           npm -v
       - name: python Commands
         run: |
-          import first platform
+          import platform
           print(platform.processor())
         shell: python
+  run-windows-command: 
+    runs-on: windows-latest
+    steps:
+        - name: Directory Powershell 
+          run: Get-location 
+        - name: Directory Bash
+          run: pwd
+          shell: bash
