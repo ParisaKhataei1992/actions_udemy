@@ -1,0 +1,8 @@
+name: Parisa
+age: 28
+address: "Some Address"
+active: true
+key:
+  key: value
+  key2: 33
+
