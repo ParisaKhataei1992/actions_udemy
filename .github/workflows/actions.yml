@@ -1,0 +1,22 @@
+name: Action Workflow
+
+on: [push]
+
+jobs: 
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple JS Action
+        id : greet
+       # uses is to refrence the file that has been created
+       # outside or inside the github folder or 
+       # from github like what I did elow
+       # @ is refrence to barnch "master" or version "v1" or commit
+        uses: actions/hello-world-javascript-action@v1
+        # with is providing input
+        with: 
+          who-to-great: Parisa
+      - name: Log Greeting Time
+      #we are outputing the first steps
+        run: echo "${{ steps.greet.outputs.time }}"
+
