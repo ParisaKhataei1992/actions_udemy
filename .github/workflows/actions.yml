@@ -5,13 +5,22 @@ on: [push]
 jobs: 
   run-github-actions:
     runs-on: ubuntu-latest
+    
     steps:
       - name: List Files
         run: |
           pwd
-          ls
+          ls -a
+
       - name: Chekout Action
+      #checkout is in order to clone your repo in your machine
         uses: actions/checkout@v1
+
+      - name: list Files after checkout
+        run: |
+          pwd
+          ls -a
+
       - name: Simple JS Action
         id : greet
        # uses is to refrence the file that has been created
@@ -22,6 +31,7 @@ jobs:
         # with is providing input
         with: 
           who-to-great: Parisa
+
       - name: Log Greeting Time
       #we are outputing the first steps
         run: echo "${{ steps.greet.outputs.time }}"
