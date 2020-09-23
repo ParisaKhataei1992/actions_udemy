@@ -19,6 +19,10 @@ jobs:
         shell: python
   run-windows-command: 
     runs-on: windows-latest
+    # needs means that this job is depends on the first job, 
+    # meaning that first job has to finish testing and 
+    # start the second job
+    needs: ["run-shell-command"]
     steps:
         - name: Directory Powershell 
           run: Get-location 
