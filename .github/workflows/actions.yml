@@ -12,13 +12,13 @@ jobs:
           pwd
           ls -a
           # commit id
-          echo $GITHUB_SHA
+          echo "commit id: " $GITHUB_SHA
           # user name and repo name 
-          echo $GITHUB_REPOSITORY
+          echo "name and repository: " $GITHUB_REPOSITORY
           # workspace directory
-          echo $GITHUB_WORKSPACE
+          echo "WorkSpace: " $GITHUB_WORKSPACE
           # this is the token that you can use to authenticate with your github repository 
-          echo "${{ github.token }}" 
+          echo "token which is hidden: " . "${{ github.token }}" 
           # git clone git@github:$GITHUB_REPOSITORY
           # git checkout $GITHUB_SHA
 
