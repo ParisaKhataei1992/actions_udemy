@@ -11,6 +11,16 @@ jobs:
         run: |
           pwd
           ls -a
+          # commit id
+          echo $GITHUB_SHA
+          # user name and repo name 
+          echo $GITHUB_REPOSITORY
+          # workspace directory
+          echo $GITHUB_WORKSPACE
+          # this is the token that you can use to authenticate with your github repository 
+          echo "${{ github.token }}" 
+          # git clone git@github:$GITHUB_REPOSITORY
+          # git checkout $GITHUB_SHA
 
       - name: Chekout Action
       #checkout is in order to clone your repo in your machine
