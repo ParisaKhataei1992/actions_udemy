@@ -25,6 +25,8 @@ jobs:
       - name: Chekout Action
       #checkout is in order to clone your repo in your machine
         uses: actions/checkout@v1
+        with: 
+          repository: ''
 
       - name: list Files after checkout
         run: |
@@ -40,7 +42,7 @@ jobs:
         uses: actions/hello-world-javascript-action@v1
         # with is providing input
         with: 
-          who-to-great: Parisa
+          who-to-greet: Parisa
 
       - name: Log Greeting Time
       #we are outputing the first steps
