@@ -1,6 +1,6 @@
 name: Action Workflow
 
-on: [push]
+on: [push , pull_request]
 
 jobs: 
   run-github-actions:
@@ -25,8 +25,6 @@ jobs:
       - name: Chekout Action
       #checkout is in order to clone your repo in your machine
         uses: actions/checkout@v1
-        with: 
-          repository: ''
 
       - name: list Files after checkout
         run: |
