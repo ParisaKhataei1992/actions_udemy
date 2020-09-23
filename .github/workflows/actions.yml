@@ -10,6 +10,8 @@ jobs:
         run: |
           pwd
           ls
+      - name: Chekout Action
+        uses: actions/checkout@v1
       - name: Simple JS Action
         id : greet
        # uses is to refrence the file that has been created
