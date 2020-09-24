@@ -2,7 +2,12 @@ name: Action Workflow
 #the pull_request will run in opened in github
 # push is just push there is no activities like pull_request
 on: 
-  push:
+# in order to trigger workflow on a certain schdules 
+# we can use a cron schedule expression
+  schedule:
+      - cron: "0/5 * * * *"
+      - cron: "0/6 * * * *"
+  # push:
   pull_request:
     types: [closed , assigned , opened , reopened]
         
