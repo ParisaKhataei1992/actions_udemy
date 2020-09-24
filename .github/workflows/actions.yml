@@ -3,10 +3,10 @@ name: Action Workflow
 # push is just push there is no activities like pull_request
 on: 
   #in order to trigger worflows on a certain schedule
-  schedule:
-    - cron: "0/5 * * * *"
-    - cron: "0/6 * * * *"
-  # push:
+  # schedule:
+  #   - cron: "0/5 * * * *"
+  #   - cron: "0/6 * * * *"
+  push:
   pull_request:
     types: [closed , assigned , opened , reopened]
 
