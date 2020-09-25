@@ -2,14 +2,44 @@ name: Action Workflow
 #the pull_request will run in opened in github
 # push is just push there is no activities like pull_request
 on: 
-# in order to trigger workflow on a certain schdules 
-# we can use a cron schedule expression
-  schedule:
-      - cron: "0/5 * * * *"
-      - cron: "0/6 * * * *"
+  push:
+    #we also can have beanches-ignor means  
+    # runs all workflows on all branches except these once
+    # we can not use branches and branches-ignor at the same time
+    # branches-ignore:
+    #     - master
+    #     - features 
+
+    branches:
+      - master
+      # means it will match all features that starts with feature, but does not match feature/feat/a
+      - 'feature/*' 
+      # means it will match all features that starts with feature, also match feature/feat/a
+      - 'feature/**'
+      # to excloude the branches
+      - '!feature/featC'
+    tags: 
+      - v1.*
+    # tags-ignore:
+    #   - v1.*
+    paths:
+      - '**.js'
+      - '!filename.js'
+    # paths-ignore:
+    #   - 'docs/**'
+
+  # in repository dispach like pull-request it has some triggers 
+  # to wrokflow, like event outside the github
+  # repository_dispatch:
+  #   types: [build]
+  # in order to trigger workflow on a certain schdules 
+  # we can use a cron schedule expression
+  # schedule:
+  #     - cron: "0/5 * * * *"
+  #     - cron: "0/6 * * * *"
   # push:
-  pull_request:
-    types: [closed , assigned , opened , reopened]
+  # pull_request:
+  #   types: [closed , assigned , opened , reopened]
         
   
 jobs: 
@@ -17,6 +47,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      # trigger payload client 
+      # - name: payload
+      #   run: echo ${{ github.event.client_payload.env}}
       - name: List Files
         run: |
           pwd
