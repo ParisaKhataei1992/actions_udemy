@@ -1,16 +1,69 @@
 name: Action Workflow
+#the pull_request will run in opened in github
+# push is just push there is no activities like pull_request
+on: 
+  push:
+    #we also can have beanches-ignor means  
+    # runs all workflows on all branches except these once
+    # we can not use branches and branches-ignor at the same time
+    # branches-ignore:
+    #     - master
+    #     - features 
 
-on: [push]
+    branches:
+      - master
+      # means it will match all features that starts with feature, but does not match feature/feat/a
+      - 'feature/*' 
+      # means it will match all features that starts with feature, also match feature/feat/a
+      - 'feature/**'
+      # to excloude the branches
+      - '!feature/featC'
+    tags: 
+      - v1.*
+    # tags-ignore:
+    #   - v1.*
+    paths:
+      - '**.js'
+      - '!filename.js'
+    # paths-ignore:
+    #   - 'docs/**'
 
+  # in repository dispach like pull-request it has some triggers 
+  # to wrokflow, like event outside the github
+  # repository_dispatch:
+  #   types: [build]
+  # in order to trigger workflow on a certain schdules 
+  # we can use a cron schedule expression
+  # schedule:
+  #     - cron: "0/5 * * * *"
+  #     - cron: "0/6 * * * *"
+  # push:
+  # pull_request:
+  #   types: [closed , assigned , opened , reopened]
+        
+  
 jobs: 
   run-github-actions:
     runs-on: ubuntu-latest
     
     steps:
+      # trigger payload client 
+      # - name: payload
+      #   run: echo ${{ github.event.client_payload.env}}
       - name: List Files
         run: |
           pwd
           ls -a
+          # commit id
+          echo "commit id: " $GITHUB_SHA
+          # user name and repo name 
+          echo "name and repository: " $GITHUB_REPOSITORY
+          # workspace directory
+          echo "WorkSpace: " $GITHUB_WORKSPACE
+          # this is the token that you can use to authenticate with your github repository 
+          echo "token which is hidden: " . "${{ github.token }}" 
+          # git clone git@github:$GITHUB_REPOSITORY
+          # git checkout $GITHUB_SHA
 
       - name: Chekout Action
       #checkout is in order to clone your repo in your machine
@@ -30,7 +83,7 @@ jobs:
         uses: actions/hello-world-javascript-action@v1
         # with is providing input
         with: 
-          who-to-great: Parisa
+          who-to-greet: Parisa
 
       - name: Log Greeting Time
       #we are outputing the first steps
